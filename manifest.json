@@ -1,0 +1,23 @@
+{
+  "short_name": "Lector",
+  "name": "Lector PWA szentírás olvasó",
+  "icons": [
+    {
+      "src": "lector-192.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "lector-512.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/lector/?source=pwa",
+  "background_color": "#fff",
+  "display": "standalone",
+  "scope": "/lector/",
+  "theme_color": "#fff"
+}
