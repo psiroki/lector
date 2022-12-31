@@ -3,13 +3,13 @@
   "name": "Lector PWA szentírás olvasó",
   "icons": [
     {
-      "src": "lector-192.jpg",
+      "src": "lector-192.png",
       "type": "image/jpeg",
       "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "lector-512.jpg",
+      "src": "lector-512.png",
       "type": "image/jpeg",
       "sizes": "512x512",
       "purpose": "any maskable"

@@ -5,8 +5,8 @@ const files = [
   "/lector/lector.js",
   "/lector/favicon.ico",
   "/lector/manifest.json",
-  "/lector/lector-192.jpg",
-  "/lector/lector-512.jpg",
+  "/lector/lector-192.png",
+  "/lector/lector-512.png",
   "https://szentiras.hu/api/books/KNB",
 ];
 
