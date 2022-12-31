@@ -1,4 +1,4 @@
-const cacheName = "lector-v0.13";
+const cacheName = "lector-v0.14";
 const files = [
   "/lector/",
   "/lector/?source=pwa",
