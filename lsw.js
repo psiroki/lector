@@ -1,4 +1,4 @@
-const cacheName = "lector-v0.15";
+const cacheName = "lector-v0.17";
 const files = [
   "/lector/",
   "/lector/?source=pwa",
@@ -18,10 +18,10 @@ self.addEventListener("fetch", event => {
           .then(async response => {
             if (response) return response;
             const realResponse = await fetch(event.request);
-            if (realResponse.ok) {
+            if (event.request.url.startsWith("https://szentiras.hu/") && realResponse.ok) {
               await cache.put(event.request, realResponse.clone());
             }
-            return response;
+            return realResponse;
           })
   ));
 });

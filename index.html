@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link rel="manifest" href="manifest.json"/>
 <link rel="apple-touch-icon" href="/lector/lector-192.png"/>
+<link rel="icon" href="/lector/favicon.ico" />
 <meta name="theme-color" content="#fff"/>
 <meta name="description" content="Lector PWA szentírás olvasó"/>
 <meta property="og:type" content="website"/>
@@ -28,6 +29,7 @@
   body {
     margin: 0;
     padding: 8px;
+    padding-top: 40px;
     box-sizing: border-box;
     display: flex;
     min-height: 100vh;
@@ -38,11 +40,122 @@
   input[type=search] {
     font-family: sans-serif;
     font-size: 12pt;
+    border-radius: 3px;
+    border: 1px solid #777;
   }
+  .locationPanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    min-height: 32px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    box-shadow: 0 0 3px 3px #0004;
+    backdrop-filter: blur(7px);
+    background-color: #fffc;
+  }
+  .searchPanel {
+    display: flex;
+    height: 32px;
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #bookList {
+    max-height: calc(100vh - 48px);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  #bookList div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  #bookList div + div {
+    margin-top: 0;
+  }
+  #bookList div:hover, #bookList div:active {
+    background-color: #0004;
+  }
+  #bookList abbr {
+    display: block;
+    font-weight: bold;
+    font-size: 125%;
+    margin: 4px;
+    min-width: 72px;
+  }
+
+  #bookList span {
+    display: block;
+    font-size: 75%;
+  }
+
   dt {
     font-weight: bold;
     margin-bottom: 4px;
+    position: relative;
   }
+
+  .close {
+    position: absolute;
+    color: #ccc;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    right: 0;
+    top: -4px;
+    box-sizing: border-box;
+    background: #444;
+    box-shadow: 0 2px 3px #0008;
+    transition: transform 200ms ease-in-out, background-color 50ms linear;
+    user-select: none;
+    transform: scale(0.75);
+  }
+
+  .close:hover {
+    transform: scale(1.5);
+  }
+
+  .close:active {
+    background: rgb(41, 52, 82);
+    transform: scale(1.25);
+    transition: transform 100ms ease-in-out, background-color 50ms linear;
+  }
+
+  .close::after,
+  .close::before {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    height: 14px;
+    width: 2px;
+    top: 3px;
+    left: 9px;
+    transform: rotate(-45deg);
+    transition: transform 200ms ease-in-out, background-color 50ms linear;
+  }
+
+  .close::after {
+    transform: rotate(45deg);
+  }
+
+  .close:hover::before {
+    transform: rotate(45deg);
+  }
+
+  .close:hover::after {
+    transform: rotate(135deg);
+  }
+
   #ver {
     position: fixed;
     bottom: 4px;
@@ -52,8 +165,11 @@
 </style>
 </head>
 <body>
-  <input type="search" id="location" placeholder="Jn 3,16" spellcheck="false" autocorrect="off"/>
-  <dl></dl>
+  <div class="locationPanel">
+    <div class="searchPanel"><input type="search" id="location" placeholder="Jn 3,16-18" spellcheck="false" autocorrect="off"/></div>
+    <div id="bookList"></div>
+  </div>
+  <dl id="results"></dl>
   <script defer="defer" src="lector.js"></script>
   <div id="ver"></div>
 </body>
